@@ -6,6 +6,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -27,7 +28,10 @@ public class LoggingAspect {
         String methodName = pjp.getSignature().getName();
         String className = pjp.getSignature().getDeclaringType().getSimpleName();
         logger.info("[ {}.{} ] START: {}", className, methodName, Instant.now());
-        Object result = pjp.proceed();
+        logger.info("[ {}.{} ] Request: {}", className, methodName, pjp.getArgs());
+        ResponseEntity<?> result = (ResponseEntity<?>) pjp.proceed();
+        logger.info("[ {}.{} ] ResponseStatusCode: {}", className, methodName, result.getStatusCode());
+        logger.info("[ {}.{} ] ResponseBody: {}", className, methodName, result.getBody());
         logger.info("[ {}.{} ] END: {}", className, methodName, Instant.now());
         return result;
     }

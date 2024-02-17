@@ -22,17 +22,17 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderModel) throws AwesomePizzaException {
         return ResponseEntity.ok(orderService.createOrder(orderModel));
     }
 
-    @PostMapping("/all")
+    @PostMapping(value = "/all", produces = "application/json")
     public ResponseEntity<List<OrderDTO>> getAllOrder() throws AwesomePizzaException {
         return ResponseEntity.ok(orderService.getAllOrder());
     }
 
-    @GetMapping("/{orderNumber}")
+    @GetMapping(value = "/{orderNumber}", produces = "application/json")
     public ResponseEntity<OrderDTO> getOrder(@PathVariable("orderNumber") String orderId) throws AwesomePizzaException{
         OrderDTO order = orderService.getOrder(orderId);
         if(order == null)
@@ -40,7 +40,7 @@ public class OrderController {
         return ResponseEntity.ok(order);
     }
 //
-    @PutMapping("/{orderNumber}")
+    @PutMapping(value = "/{orderNumber}", produces = "application/json")
     public ResponseEntity<BaseResponseDTO> updateOrderStatus(
             @RequestParam("status") StatusOrder status,
             @PathVariable("orderNumber") String orderNumber) throws AwesomePizzaException{
@@ -50,7 +50,7 @@ public class OrderController {
         return ResponseEntity.ok(new BaseResponseDTO());
     }
 
-    @GetMapping("/next")
+    @GetMapping(value = "/next", consumes = "application/json")
     public ResponseEntity<OrderDTO> getNextOrder() throws AwesomePizzaException{
         OrderDTO order = orderService.getNextOrder();
         if(order == null)

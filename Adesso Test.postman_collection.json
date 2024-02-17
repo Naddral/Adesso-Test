@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "b6b30b98-3f27-45e0-b1fa-1ead974d79b8",
+		"name": "Adesso Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5389365"
+	},
+	"item": [
+		{
+			"name": "createOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pizzas\": [\r\n        {\r\n                \"name\": \"Diavola\",\r\n                \"price\": \"10.00\",\r\n                \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/v1/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"v1",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrder",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pizzas\": [\r\n        {\r\n                \"name\": \"Diavola\",\r\n                \"price\": \"10.00\",\r\n                \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/v1/order/:orderNumber?status=IN_PROGRESS",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"v1",
+						"order",
+						":orderNumber"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "IN_PROGRESS"
+						}
+					],
+					"variable": [
+						{
+							"key": "orderNumber",
+							"value": "f5ae752a-af98-498a-ba4a-3b4e40d2aeda"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOrder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/v1/order/:orderNumber",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"v1",
+						"order",
+						":orderNumber"
+					],
+					"variable": [
+						{
+							"key": "orderNumber",
+							"value": "f5ae752a-af98-498a-ba4a-3b4e40d2aeda"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNextOrder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/v1/order/next",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"v1",
+						"order",
+						"next"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/v1/order/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"v1",
+						"order",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
